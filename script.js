@@ -1,13 +1,21 @@
 const container = document.querySelector('.container');
 
-
-for (i = 0; i < 20 ** 2;) {
+for (i = 0; i < 16 ** 2;) {
     const box = document.createElement('div');
     box.classList.add('box');
     container.appendChild(box);
     i = container.childElementCount;
     box.addEventListener('mouseover', () => box.classList.add('hover'));
 } 
+
+function createBox (num) {
+    const box = document.createElement('div');
+    box.classList.add('box');
+    box.style.width = `${340 / num}px`;
+    box.style.height = `${340 / num}px`;
+    container.appendChild(box);
+    box.addEventListener('mouseover', () => box.classList.add('hover'));
+}
 
 function removeAllChildNodes(parent) {
     while (parent.firstChild) {
@@ -17,37 +25,22 @@ function removeAllChildNodes(parent) {
 
 const button = document.querySelector('button');
 button.addEventListener('click', () => {
-    let amount = prompt('enter 1 dimension', '');
-    amount = +amount;
-    removeAllChildNodes(container)
-    createIntBoxes(amount)
+    let dimension = prompt('enter 1 dimension', '');
+    if (dimension > 128) {
+        dimension = prompt('Your number is too big please enter 128 or less', '')
+    } else {
+        dimension = +dimension;
+    }
+    removeAllChildNodes(container);
+    createIntBoxes(dimension);
+
 });
 
-function createIntBoxes (i) {
-    for (j = 0; j < i ** 2 ;) {
-        const box = document.createElement('div');
-        box.classList.add('box');
-        container.appendChild(box);
-        box.addEventListener('mouseover', () => box.classList.add('hover'));
-        j = container.childElementCount;
-        changeBoxSize(i, box);
+function createIntBoxes (z) {
+    for (i = 0; i < z; i++){
+        for (j = 0; j < z; j++) {        
+            createBox(z);
+        }
     }
 }
 
-function changeBoxSize(number, element) {
-    let dimension = 340 / number;
-    console.log(dimension);
-    element.style.width = `${dimension}px`;
-    element.style.height = `${dimension}px`;
-    return dimension;
-}
-
-
-function discardBadBoxes(dimension) {
-    //container.forEach is not a function error
-    container.forEach(child => {
-        if(child.style.height != `${dimension}px`) {
-            console.log(div);
-        }
-    });
-}
