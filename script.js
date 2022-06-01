@@ -46,7 +46,7 @@ function createIntBoxes (z) {
 }
 
 reset.addEventListener('click', () => {
-    let boxes = [document.querySelectorAll('.hover')]
+    let boxes = document.querySelectorAll('.hover')
     boxes.forEach(box => {
         box.classList.remove('hover')
     });
