@@ -1,4 +1,6 @@
 const container = document.querySelector('.container');
+const button = document.querySelector('.create');
+const reset = document.querySelector('.reset');
 
 for (i = 0; i < 16 ** 2;) {
     const box = document.createElement('div');
@@ -23,7 +25,6 @@ function removeAllChildNodes(parent) {
     }
 }
 
-const button = document.querySelector('button');
 button.addEventListener('click', () => {
     let dimension = prompt('enter 1 dimension', '');
     if (dimension > 128) {
@@ -33,7 +34,7 @@ button.addEventListener('click', () => {
     }
     removeAllChildNodes(container);
     createIntBoxes(dimension);
-
+    
 });
 
 function createIntBoxes (z) {
@@ -43,4 +44,12 @@ function createIntBoxes (z) {
         }
     }
 }
+
+reset.addEventListener('click', () => {
+    let boxes = [document.querySelectorAll('.hover')]
+    boxes.forEach(box => {
+        box.classList.remove('hover')
+    });
+});
+
 
