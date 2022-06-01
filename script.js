@@ -47,9 +47,9 @@ function createIntBoxes (z) {
 }
 
 reset.addEventListener('click', () => {
-    let boxes = document.querySelectorAll('.hover')
+    let boxes = container.querySelectorAll('div')
     boxes.forEach(box => {
-        box.classList.remove('hover')
+        box.style.backgroundColor = 'hsl(0, 100%, 100%)'
     });
 });
 
