@@ -10,6 +10,7 @@ for (i = 0; i < 16 ** 2;) {
     box.addEventListener('mouseover', () => box.classList.add('hover'));
 } 
 
+
 function createBox (num) {
     const box = document.createElement('div');
     box.classList.add('box');
@@ -27,10 +28,12 @@ function removeAllChildNodes(parent) {
 
 button.addEventListener('click', () => {
     let dimension = prompt('enter 1 dimension', '');
-    if (dimension > 128) {
+    if (dimension < 128 && dimension > 0) {
+        dimension = +dimension;
+    } else if (dimension > 128) {
         dimension = prompt('Your number is too big please enter 128 or less', '')
     } else {
-        dimension = +dimension;
+        return
     }
     removeAllChildNodes(container);
     createIntBoxes(dimension);
