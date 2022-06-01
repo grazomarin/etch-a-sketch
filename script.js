@@ -2,12 +2,11 @@ const container = document.querySelector('.container');
 const button = document.querySelector('.create');
 const reset = document.querySelector('.reset');
 
-for (i = 0; i < 16 ** 2;) {
+for (i = 0; i < 16 ** 2; i++) {
     const box = document.createElement('div');
     box.classList.add('box');
     container.appendChild(box);
-    i = container.childElementCount;
-    box.addEventListener('mouseover', () => box.classList.add('hover'));
+    box.addEventListener('mouseover', () => {randomColor(box);});
 } 
 
 
@@ -17,7 +16,7 @@ function createBox (num) {
     box.style.width = `${340 / num}px`;
     box.style.height = `${340 / num}px`;
     container.appendChild(box);
-    box.addEventListener('mouseover', () => box.classList.add('hover'));
+    box.addEventListener('mouseover', () => {randomColor(box);});
 }
 
 function removeAllChildNodes(parent) {
@@ -33,11 +32,10 @@ button.addEventListener('click', () => {
     } else if (dimension > 128) {
         dimension = prompt('Your number is too big please enter 128 or less', '')
     } else {
-        return
+        return;
     }
     removeAllChildNodes(container);
     createIntBoxes(dimension);
-    
 });
 
 function createIntBoxes (z) {
@@ -56,3 +54,10 @@ reset.addEventListener('click', () => {
 });
 
 
+let l = 50;
+
+function randomColor(box) {
+    let value = Math.floor(Math.random() * 360);
+    box.style.backgroundColor = `hsl(${value}, 90%, ${l}%)`
+    l -= 1;
+};
